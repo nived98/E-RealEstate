@@ -1,0 +1,102 @@
+<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+    <!-- title -->
+    <div class="form-group">
+        <label for="id_title">Title</label>
+        <input class="form-control" type="text" name="title" id="id_title" placeholder="Title" required autofocus>
+    </div>
+
+    <!-- Body -->
+    <div class="form-group">
+        <label for="id_body">Content</label>
+        <textarea class="form-control" rows="5" type="text" name="body" id="id_body" placeholder="This property is..."
+            required></textarea>
+    </div>
+
+    <!-- Type -->
+    <div class="form-group">
+        <p><label for="id_types">Types:</label> <select name="types" id="id_types">
+                <option value="R">Rent</option>
+
+                <option value="S">Sell</option>
+
+                <option value="B">Both</option>
+
+            </select></p>
+    </div>
+
+    <div class="form-group">
+        <p><label for="id_premium">Premium:</label> <select name="premium" id="id_premium">
+                <option value="Y">yes</option>
+
+                <option value="N">No</option>
+
+            </select></p>
+    </div>
+
+
+    <!-- Address -->
+    <div class="form-group">
+        <label for="id_address">Address</label>
+        <input class="form-control" type="text" name="address" id="id_address" placeholder="Landmark" required>
+    </div>
+
+    <!-- City -->
+    <div class="form-group">
+        <label for="id_city">City</label>
+        <input class="form-control" type="text" name="city" id="id_city" required>
+    </div>
+
+    <!-- State -->
+    <div class="form-group">
+        <label for="id_state">State</label>
+        <input class="form-control" type="text" name="state" id="id_state" required>
+    </div>
+
+    <!-- Zipcode -->
+    <div class="form-group">
+        <label for="id_zipcode">Zipcode</label>
+        <input class="form-control" type="text" name="zipcode" id="id_zipcode" required>
+    </div>
+
+    <!-- Image -->
+    <div class="form-group">
+        <label for="id_image">Image</label>
+        <input type="file" name="image" id="id_image" accept="image/*" required>
+    </div>
+
+    <!-- Image2 -->
+    <div class="form-group">
+        <label for="id_image2">Image2</label>
+        <input type="file" name="image2" id="id_image2" accept="image/*">
+    </div>
+
+    <!-- Image3 -->
+    <div class="form-group">
+        <label for="id_image3">Image3</label>
+        <input type="file" name="image3" id="id_image3" accept="image/*">
+    </div>
+
+    <!-- Price -->
+    <div class="form-group">
+        <label for="id_price">Price</label>
+        <input class="form-control" type="number" name="price" id="id_price" required>
+    </div>
+
+    <!-- Sqft -->
+    <div class="form-group">
+        <label for="id_sqft">Sq.ft</label>
+        <input class="form-control" type="number" name="sqft" id="id_sqft" required>
+    </div>
+
+    <!-- Bedrooms -->
+    <div class="form-group">
+        <label for="id_bedrooms">Bedrooms</label>
+        <input class="form-control" type="number" name="bedrooms" id="id_bedrooms" required>
+    </div>
+
+    <!-- Bathrooms -->
+    <div class="form-group">
+        <label for="id_bathrooms">Bathrooms</label>
+        <input class="form-control" type="number" name="bathrooms" id="id_bathrooms" required>
+    </div>

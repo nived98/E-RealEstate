@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="text-center my-3">Register</h3>
+
+<form method="POST" class="mx-auto w-25">
+  {% csrf_token %}
+  {% for field in form %}
+  <div class="form-field">
+    {{ field.label_tag }}<br>
+    {{ field }}
+    {% if field.help_text %}
+    <small style="display: none">{{ field.help_text }}</small>
+    {% endif %}
+    {% for error in field.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %}
+  </div>
+  {% endfor %}
+  <div class="form-field">
+    <div class="input-field">
+      <input type="checkbox" name="ccc" id="cc2">
+      <label for="cc2">
+        <span></span>
+        <small>I agree with terms</small>
+      </label>
+    </div>
+  </div>
+  <!--form-cp end-->
+  <button type="submit" class="btn2">Register</button>
+</form>
+<a href="#" title="" class="signin-op">Have an account?</a>z
+
+
+
+
+<!-- <h2>Sign up</h2>
+<form method="post">
+  {% csrf_token %}
+  {% for field in form %}
+  <p>
+    {{ field.label_tag }}<br>
+    {{ field }}
+    {% if field.help_text %}
+    <small style="display: none">{{ field.help_text }}</small>
+    {% endif %}
+    {% for error in field.errors %}
+    <p style="color: red">{{ error }}</p>
+    {% endfor %}
+  </p>
+  {% endfor %}
+
+  <button type="submit">Sign up</button>
+</form> -->
+{% endblock %}
+
+
+
+
+<!--popup end-->

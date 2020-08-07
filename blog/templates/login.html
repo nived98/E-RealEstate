@@ -1,0 +1,32 @@
+{% extends 'base.html' %} {% block body %}
+
+<div>
+  <h3 class="text-center my-3">Sign In to your Account</h3>
+  <form method="POST" class="mx-auto w-25">
+    {% csrf_token %}
+    <div class="form-field">
+      <input type="text" name="username" placeholder="Username">
+    </div>
+    <div class="form-field">
+      <input type="password" name="password" placeholder="Password">
+    </div>
+    <div class="form-cp">
+      <div class="form-field">
+        <div class="input-field">
+          <input type="checkbox" name="ccc" id="cc1">
+          <label for="cc1">
+            <span></span>
+            <small>Remember me</small>
+          </label>
+        </div>
+      </div>
+      <a href="#" title="">Forgot Password?</a>
+    </div>
+    <!--form-cp end-->
+    <button type="submit" class="btn2">Sign In</button>
+  </form>
+</div>
+<br>
+
+
+{% endblock %}

@@ -1,0 +1,308 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Reals</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="{% static 'assets/images/favicon.png' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link rel="stylesheet" type="{% static 'text/css" href= "assets/css/responsive.css' %}">
+    <link rel="stylesheet" type="{% static 'text/css" href= "assets/css/color.css' %}">
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+
+    <div class="">
+
+        <header>
+
+            <div class="top-header">
+                <div class="container">
+                    <div class="row justify-content-between">
+                        <div class="col-xl-6 col-md-7 col-sm-12">
+                            <div class="header-address">
+                                <a href="#">
+                                    <i class="la la-phone-square"></i>
+                                    <span>+91 987654321</span>
+                                </a>
+                                <a href="#">
+                                    <i class="la la-map-marker"></i>
+                                    <span>FLM Mall, Hydderabad, TS</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-5 col-sm-12">
+                            <div class="header-social">
+                                <a href="#">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                                <a href="#">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <nav class="navbar navbar-expand-lg navbar-light">
+                                <a class="navbar-brand" href="{% url 'blog:home' %}">
+                                    <img src="static/assets/images/logo - Copy.png" alt="">
+                                </a>
+                                <button class="menu-button" type="button" data-toggle="collapse"
+                                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+                                    <span class="icon-spar"></span>
+                                    <span class="icon-spar"></span>
+                                    <span class="icon-spar"></span>
+                                </button>
+
+                                <div class="navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item dropdown active">
+
+                                            <div class="dropdown-menu animated">
+
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+
+                                            <div class="dropdown-menu animated">
+
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+
+                                            <div class="dropdown-menu animated">
+
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+
+                                            <div class="dropdown-menu animated">
+
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="d-inline my-2 my-lg-0">
+                                        {% if request.user.is_authenticated %}
+                                        Hi,{{ user.username }}&nbsp;
+                                        <a class="p-2 text-dark" href="{% url 'blog:home' %}">Home</a>
+                                        <a class="p-2 text-dark" href="{% url 'property:create' %}">Submit a
+                                            Property</a>
+                                        <a class="p-2 text-dark" href="{% url 'blog:account' %}">Account</a>
+                                        <a class="p-2 text-dark" href="{% url 'blog:profile' %}">Profile</a>
+                                        <a class="p-2 text-dark" href="{% url 'blog:logout' %}">Logout</a>
+                                        {% else %}
+                                        <a class="p-2 text-dark" href="{% url 'blog:home' %}">Home</a>
+                                        <a class="p-2 text-dark" href="{% url 'blog:login' %}">Login</a>
+                                        <a class="btn btn-outline-primary" href="{% url 'blog:signup' %}">Register</a>
+                                        {% endif %}
+                                    </div>
+                                    <a href="#" title="" class="close-menu"><i class="la la-close"></i></a>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <!--header end-->
+
+        <!-- <div class="popup" id="sign-popup">
+            <h3>Sign In to your Account</h3>
+            <div class="popup-form">
+                <form>
+                    <div class="form-field">
+                        <input type="text" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-field">
+                        <input type="text" name="password" placeholder="Password">
+                    </div>
+                    <div class="form-cp">
+                        <div class="form-field">
+                            <div class="input-field">
+                                <input type="checkbox" name="ccc" id="cc1">
+                                <label for="cc1">
+                                    <span></span>
+                                    <small>Remember me</small>
+                                </label>
+                            </div>
+                        </div>
+                        <a href="#" title="">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="btn2">Sign In</button>
+                </form>
+                <a href="#" title="" class="fb-btn"> <i class="fa fa-facebook"></i>Sign In With Facebook</a>
+            </div>
+        </div> -->
+        <!--popup end-->
+
+        <!-- <div class="popup" id="register-popup">
+            <h3>Register</h3>
+            <div class="popup-form">
+                <form method="POST">
+                    <div class="form-field">
+                        <input type="text" name="username" placeholder="Username">
+                    </div>
+                    <div class="form-field">
+                        <input type="text" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-field">
+                        <input type="text" name="password" placeholder="Password">
+                    </div>
+                    <div class="form-cp">
+                        <div class="form-field">
+                            <div class="input-field">
+                                <input type="checkbox" name="ccc" id="cc2">
+                                <label for="cc2">
+                                    <span></span>
+                                    <small>I agree with terms</small>
+                                </label>
+                            </div>
+                        </div>
+                        <a href="#" title="" class="signin-op">Have an account?</a>
+                    </div>
+
+                    <button type="submit" class="btn2">Register</button>
+                </form>
+            </div>
+        </div> -->
+        <!--popup end-->
+
+        {% block body %}
+
+        {% endblock %}
+
+        {% block map %}
+
+        {% endblock %}
+        <section class="fullwidth-home-map">
+            <!-- <h3 class="vis-hid">Visible Heading</h3>
+            <div id="map" data-map-zoom="9"></div> -->
+            <br>
+            <br>
+        </section>
+        <a href="#" title="">
+            <section class="cta section-padding">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="cta-text">
+                                <h2>Discover a home you'll love to stay</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </a>
+
+        <section class="bottom section-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-4 col-sm-6 col-md-4">
+                        <div class="bottom-logo">
+                            <img src="assets/images/logo.png" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 col-md-3">
+                        <div class="bottom-list">
+                            <h3>Helpful Links</h3>
+                            <ul>
+                                <li>
+                                    <a href="{% url 'blog:home' %}" title="">Home</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <!--bottom-list end-->
+                    </div>
+                    <div class="col-xl-5 col-sm-12 col-md-5 pl-0">
+                        <div class="bottom-desc">
+                            <h3>Aditional Information</h3>
+                            <p>Thank you for visiting our website.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="footer-content">
+                            <div class="row justify-content-between">
+                                <div class="col-xl-6 col-md-6">
+                                    <div class="copyright">
+                                        <p>&copy; All Rights Reserved.</p>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-6">
+                                    <div class="footer-social">
+                                        <a href="#">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                        <a href="#">
+                                            <i class="fa fa-linkedin"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--footer end-->
+
+
+    </div>
+    <!--wrapper end-->
+
+
+
+
+
+
+    <script src="{% static 'assets/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/modernizr-3.6.0.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+
+    <!-- Maps -->
+
+
+
+
+</body>
+
+</html>

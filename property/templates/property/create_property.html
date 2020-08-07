@@ -1,0 +1,279 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<style type="text/css">
+	.create-form {
+		width: 100%;
+		max-width: 100%;
+		padding: 15px;
+		margin: auto;
+	}
+
+	.submit-button {
+		max-width: 200px;
+	}
+</style>
+
+<div class="container">
+	<div class="row">
+		<div class="col-lg-7 offset-lg-1">
+			<!-- <form> -->
+			<!-- {{form.as_p}} -->
+			<form class="create-form" method="post" enctype="multipart/form-data">{% csrf_token %}
+
+				<!-- title -->
+				<div class="form-group">
+					<label for="id_title">Title</label>
+					<input class="form-control" type="text" name="title" id="id_title" placeholder="Title" required
+						autofocus>
+				</div>
+
+				<!-- Body -->
+				<div class="form-group">
+					<label for="id_body">Content</label>
+					<textarea class="form-control" rows="5" type="text" name="body" id="id_body"
+						placeholder="This property is..." required></textarea>
+				</div>
+
+				<!-- Type -->
+				<div class="form-group">
+					<label for="id_types">For:</label> <select name="types" id="id_types">
+						<option value="R">Rent</option>
+						<option value="S">Sell</option>
+						<option value="B">Both</option>
+					</select>
+				</div>
+
+				<!-- Stay -->
+				<div class="form-group">
+					<label for="id_stay">Type:</label> <select name="stay" id="id_stay">
+						<option value="A">Apartment</option>
+						<option value="H">House</option>
+					</select>
+				</div>
+
+				<!-- Parking -->
+				<div class="form-group">
+					<label for="id_parking">Parking:</label>
+					<input type="checkbox" name="parking" id="id_parking">
+				</div>
+
+				<!-- Balcony -->
+				<div class="form-group">
+					<label for="id_balcony">Balcony:</label>
+					<input type="checkbox" name="balcony" id="id_balcony">
+				</div>
+
+				<!-- Gym -->
+				<div class="form-group">
+					<label for="id_gym">Gym:</label>
+					<input type="checkbox" name="gym" id="id_gym">
+				</div>
+
+				<!-- Pool -->
+				<div class="form-group">
+					<label for="id_pool">Pool:</label>
+					<input type="checkbox" name="pool" id="id_pool">
+				</div>
+
+				<div class="form-group"><label for="id_year_built">Year built:</label> <input type="number"
+						name="year_built" value="0" required="" id="id_year_built"></div>
+
+				<!-- Address -->
+				<div class="form-group">
+					<label for="id_address">Address</label>
+					<input class="form-control" type="text" name="address" id="id_address" placeholder="Landmark"
+						required>
+				</div>
+
+				<!-- City -->
+				<div class="form-group">
+					<label for="id_city">City</label>
+					<input class="form-control" type="text" name="city" id="id_city" required>
+				</div>
+
+				<!-- Area -->
+				<div class="form-group">
+					<label for="id_area">Area</label>
+					<input class="form-control" type="text" name="area" id="id_area" required>
+				</div>
+
+				<!-- State -->
+				<div class="form-group"><label for="id_state">State:</label> <select name="state" id="id_state">
+						<option value="AP">Andhra Pradesh</option>
+
+						<option value="AR">Arunachal Pradesh</option>
+
+						<option value="AS">Assam</option>
+
+						<option value="BR">Bihar</option>
+
+						<option value="CG">Chhattisgarh</option>
+
+						<option value="GA">Goa</option>
+
+						<option value="GJ">Gujarat</option>
+
+						<option value="HR">Haryana</option>
+
+						<option value="HP">Himachal Pradesh</option>
+
+						<option value="JK">Jammu and Kashmir</option>
+
+						<option value="JH">Jharkhand</option>
+
+						<option value="KA">Karnataka</option>
+
+						<option value="KL">Kerala</option>
+
+						<option value="MP">Madhya Pradesh</option>
+
+						<option value="MH">Maharashtra</option>
+
+						<option value="MN">Manipur</option>
+
+						<option value="ML">Meghalaya</option>
+
+						<option value="MZ">Mizoram</option>
+
+						<option value="NL">Nagaland</option>
+
+						<option value="OD">Odisha</option>
+
+						<option value="PB">Punjab</option>
+
+						<option value="SK">Sikkim</option>
+
+						<option value="TN">Tamil Nadu</option>
+
+						<option value="TS">Telangana</option>
+
+						<option value="TR">Tripura</option>
+
+						<option value="UK">Uttrakhand</option>
+
+						<option value="UP">Uttar Pradesh</option>
+
+						<option value="WB">West Bengal</option>
+
+						<option value="AN">Andaman and Nicobar Islands</option>
+
+						<option value="CH">Chandigarh</option>
+
+						<option value="DN">Dadra and Nagar Haveli</option>
+
+						<option value="DD">Daman and Diu</option>
+
+						<option value="DL">Delhi</option>
+
+						<option value="LH">Ladakh</option>
+
+					</select></div>
+
+				<!-- Zipcode -->
+				<div class="form-group">
+					<label for="id_zipcode">Zipcode</label>
+					<input class="form-control" type="text" name="zipcode" id="id_zipcode" required>
+				</div>
+
+				<!-- Image -->
+				<div class="form-group">
+					<label for="id_image">Image</label>
+					<input type="file" name="image" id="id_image" accept="image/*" required>
+				</div>
+
+				<!-- Image2 -->
+				<div class="form-group">
+					<label for="id_image2">Interior</label>
+					<input type="file" name="image2" id="id_image2" accept="image/*">
+				</div>
+
+				<!-- Image3 -->
+				<div class="form-group">
+					<label for="id_image3">Interior</label>
+					<input type="file" name="image3" id="id_image3" accept="image/*">
+				</div>
+
+				<!-- Image4 -->
+				<div class="form-group">
+					<label for="id_image4">Floorplan</label>
+					<input type="file" name="image4" id="id_image4" accept="image/*">
+				</div>
+
+				<!-- Price -->
+				<div class="form-group">
+					<label for="id_price">Price</label>
+					<input class="form-control" type="number" name="price" id="id_price" required>
+				</div>
+
+				<!-- Sqft -->
+				<div class="form-group">
+					<label for="id_sqft">Sq.ft</label>
+					<input class="form-control" type="number" name="sqft" id="id_sqft" required>
+				</div>
+
+				<!-- Bedrooms -->
+				<div class="form-group">
+					<label for="id_bedrooms">Bedrooms</label>
+					<input class="form-control" type="number" name="bedrooms" id="id_bedrooms" required>
+				</div>
+
+				<!-- Bathrooms -->
+				<div class="form-group">
+					<label for="id_bathrooms">Bathrooms</label>
+					<input class="form-control" type="number" name="bathrooms" id="id_bathrooms" required>
+				</div>
+				<!-- latitude -->
+				<div class="form-group">
+					<label for="id_latitude">latitude</label>
+					<input class="form-control" name="latitude" id="id_latitude" required>
+				</div>
+				<!-- longitude -->
+				<div class="form-group">
+					<label for="id_longitude">longitude</label>
+					<input class="form-control" name="longitude" id="id_longitude" required>
+				</div>
+
+				<!-- Submit btn -->
+				<button class="submit-button btn btn-lg btn-primary btn-block" type="submit">POST</button>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div id="map_div" style="width:75%;height:500px;margin:90px"></div>
+<script>
+	// Initialize and add the map
+	function initMap() {
+		// The location of Uluru
+		var add_marker = null, map = null;  //Declare vaiable
+		var sricity = { lat: 11.342, lng: 77.728165 };
+
+		// map load
+		var map = new google.maps.Map(document.getElementById('map_div'), {
+			zoom: 5, center: sricity
+		});
+
+		map.addListener("click", function (e) {
+			if (add_marker != null) {            //already set marker to clear
+				add_marker.setMap(null);
+				add_marker = null;
+			}
+
+			// Dynamic to set marker based on click event
+			add_marker = new google.maps.Marker({
+				map: map,
+				position: new google.maps.LatLng(e.latLng.lat(), e.latLng.lng()),
+				zoom: 10
+			});
+			document.getElementById('id_latitude').value = e.latLng.lat().toFixed(4)
+			document.getElementById('id_longitude').value = e.latLng.lng().toFixed(4)
+		});
+	}
+</script>
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYl3jkGGMzayse2hTeqApY0qanvqXdmaI&callback=initMap">
+	</script>
+
+{% endblock %}

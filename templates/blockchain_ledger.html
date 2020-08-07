@@ -1,0 +1,24 @@
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Invoices</th>
+                <th scope="col">Block hash</th>
+                <th scope="col">Owner</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ledger in ledger %}
+            <tr>
+                <th scope="row">1</th>
+                <td><a href="{% url 'payments:invoices' ledger.data.slug %}">{{ledger.data}}</a></td>
+                <td>{{ledger.hash}}</td>
+                <td>{{ledger.data.issued_to}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</head>

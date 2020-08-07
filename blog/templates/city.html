@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<section class="pager-sec bfr">
+  <div class="container">
+    <div class="pager-sec-details">
+      <h3>City</h3>
+      <ul>
+        <li><a href="#" title="">Home</a></li>
+        <li><span>City</span></li>
+      </ul>
+    </div>
+    <!--pager-sec-details end-->
+  </div>
+</section>
+
+<section class="blog-grid section-padding">
+
+  {% if cities %}
+
+
+  <div class="container">
+    <div class="blog-grid-posts">
+      <div class="row">
+
+        {% for cities in cities %}
+
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+          <div class="blog-single-post">
+            <div class="blog-img">
+              <a href="{% url 'blog:props' cities %}" title="">
+                <img src="https://via.placeholder.com/370x295" alt="">
+              </a>
+              <div class="view-post">
+                <a href="{% url 'blog:props' cities %}" title="" class="view-posts">View List</a>
+              </div>
+            </div>
+            <!--blog-img end-->
+            <div class="post_info">
+
+              <h3><a href="{% url 'blog:props' cities %}" title=""><i class="la la-map-marker"></i>{{ cities }}</a></h3>
+              <!-- <p>{{ props_count }} Listings</p> -->
+
+              <a href="{% url 'blog:props' cities %}" title="">View List <i
+                  class="la la-long-arrow-right"></i></a>
+            </div>
+            <a href="{% url 'blog:props' cities %}" title="" class="ext-link"></a>
+          </div>
+          <!--blog-single-post end-->
+        </div>
+
+        {% endfor %}
+
+
+      </div>
+    </div>
+    <!--blog-grid-posts end-->
+  </div>
+
+
+
+  {% endif %}
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<section class="form_sec">
+            <h3 class="vis-hid">Invisible</h3>
+            <div class="container">
+              <form action="{% url 'blog:search_s' %}" class="row banner-search">
+                  <div class="form_field addres">
+                      <input type="text" class="form-control" placeholder="Enter City" name='city'>
+                  </div>
+
+                  <div class="form_field tpmax">
+                      <div class="form-group">
+                        <label class="sr-only">Min-Price</label>
+                          <select name="minprice" class="form-control">
+                            <option selected="true" disabled="disabled">Min-Price
+                            <i class="fa fa-angle-down"></i></option>
+                            {% for key,value in price_choices.items %}
+                              <option value="{{key}}">{{value}}</option>
+                            {% endfor %}
+                          </select>
+                      </div>
+                  </div>
+                  <div class="form_field tpmax">
+                      <div class="form-group">
+                        <label class="sr-only">Max-Price</label>
+                          <select name="maxprice" class="form-control">
+                            <option selected="true" disabled="disabled">Max-Price
+                            <i class="fa fa-angle-down"></i></option>
+                            {% for key,value in price_choices.items %}
+                              <option value="{{key}}">{{value}}</option>
+                            {% endfor %}
+                          </select>
+                      </div>
+                  </div>
+                  <div class="form_field srch-btn">
+                        <button class="btn btn-outline-primary ">
+                            <i class="la la-search"></i>
+
+                    </div>
+              </form>
+            </div>
+        </section><!--form_sec end-->
+
+<section class="blog-grid section-padding">
+
+  {% if property_listings_s1 %}
+
+  <div class="container">
+    <div class="blog-grid-posts">
+      <div class="row">
+
+        {% for property_listings in property_listings_s1 %}
+
+        <div class="col-lg-4 col-md-6 col-sm-6 col-12">
+          <div class="blog-single-post">
+            <div class="blog-img">
+              <a href="{% url 'property:detail' property_listings.slug %}" title="">
+                <img src="{{ property_listings.image.url }}" alt="">
+                <div class="rate-info">
+                    <font color="white">₹ {{ property_listings.price }}
+                    </font>
+
+                </div>
+              </a>
+              <div class="view-post">
+                <a href="{% url 'property:detail' property_listings.slug %}" title="" class="view-posts">View Post</a>
+              </div>
+            </div>
+            <!--blog-img end-->
+            <div class="post_info">
+              <ul class="post-nfo">
+                <li><i class="la la-calendar"></i>{{ property_listings.date_updated }} for {{ property_listings.types }}
+                  by {{ property_listings.owner }}
+                </li>
+              </ul>
+              <h3><a href="{% url 'property:detail' property_listings.slug %}"
+                  title="">{{ property_listings.title }}</a></h3>
+                  <i class="la la-map-marker"></i>{{ property_listings.city }},{{ property_listings.state }}<br><br>
+              <p>{{ property_listings.body | safe }}</p>
+              <a href="{% url 'property:detail' property_listings.slug %}" title="">Read More <i
+                  class="la la-long-arrow-right"></i></a>
+            </div>
+            <a href="{% url 'property:detail' property_listings.slug %}" title="" class="ext-link"></a>
+          </div>
+          <!--blog-single-post end-->
+        </div>
+
+        {% endfor %}
+
+
+      </div>
+    </div>
+    <!--blog-grid-posts end-->
+  </div>
+
+
+
+  {% endif %}
+
+</section>
+
+{% endblock %}
+{% block map %}
+<h1 style="font-size:25px;margin-left:94px">Our homes around the World</h1>
+<div id="map_div" style="width:90%;height:500px;margin: 90px;"></div>
+<script>
+// var points = [
+//   ['name1', 59.9362384705039, 30.19232525792222, 12, 'https://docs.jsfiddle.net/use-cases/code-snippets-hosting'],
+//   ['name2', 59.941412822085645, 30.263564729357767, 11, 'https://jsfiddle.net/about'],
+//   ['name3', 59.939177197629455, 30.273554411974955, 10, 'https://docs.jsfiddle.net/']
+// ];
+var lat= {{lat|safe}};
+var long = {{lon|safe}};
+var slug = {{slug|safe}}
+var link = "http://127.0.0.1:8000/property/"
+var name= ["name"];
+var ind = 12;
+// var url=['https://docs.jsfiddle.net/use-cases/code-snippets-hosting'];
+function setMarkers(map,lat,long,name,ind,slug) {
+  var shape = {
+    coord: [1, 1, 1, 20, 18, 20, 18 , 1],
+    type: 'poly'
+  };
+
+  for (var i = 0; i < lat.length; i++) {
+    var myLatLng = new google.maps.LatLng(lat[i], long[i]);
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      shape: shape,
+      title: name[i],
+      zIndex: ind,
+      url: link.concat(slug[i])
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      window.location.href = this.url;
+    });
+  }
+}
+
+function initFunc() {
+  var myOptions = {
+    center: new google.maps.LatLng(13.5269, 79.9802),
+    zoom: 9,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("map_div"),myOptions);
+  setMarkers(map,lat,long,name,ind,slug);
+}
+
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYl3jkGGMzayse2hTeqApY0qanvqXdmaI&callback=initFunc">
+</script>
+{% endblock %}

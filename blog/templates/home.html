@@ -1,0 +1,323 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<section class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="banner-content">
+                    <h1>Discover best properties in one place</h1>
+                </div>
+                <form action="{% url 'blog:search' %}" class="row banner-search">
+                    <div class="form_field addres">
+                        <input type="text" class="form-control" placeholder="Enter City" name='city'>
+                    </div>
+
+                    <div class="form_field tpmax">
+                        <div class="form-group">
+                          <label class="sr-only">Type</label>
+                            <select name="type" class="form-control">
+                              <option selected="true" disabled="disabled">Types
+                              <i class="fa fa-angle-down"></i></option>
+                              {% for key,value in type_choices.items %}
+                                <option value="{{key}}">{{value}}</option>
+                              {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form_field tpmax">
+                        <div class="form-group">
+                          <label class="sr-only">Min-Price</label>
+                            <select name="minprice" class="form-control">
+                              <option selected="true" disabled="disabled">Min-Price
+                              <i class="fa fa-angle-down"></i></option>
+                              {% for key,value in price_choices.items %}
+                                <option value="{{key}}">{{value}}</option>
+                              {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form_field tpmax">
+                        <div class="form-group">
+                          <label class="sr-only">Max-Price</label>
+                            <select name="maxprice" class="form-control">
+                              <option selected="true" disabled="disabled">Max-Price
+                              <i class="fa fa-angle-down"></i></option>
+                              {% for key,value in price_choices.items %}
+                                <option value="{{key}}">{{value}}</option>
+                              {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form_field srch-btn">
+                        <button class="btn btn-outline-primary" type="submit">
+                            <i class="la la-search"></i>
+                            <span>Search</span>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="intro section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 pl-0">
+                <div class="intro-content">
+                    <h3>Homes around the world</h3>
+                    <p>Real estate is "property consisting of land and the buildings on it, along with its natural
+                        resources such as crops, minerals or water; immovable property of this nature; an interest
+                        vested in this (also) an item of real property, (more generally) buildings or housing in
+                        general. Also: the business of real estate; the profession of buying, selling, or renting land,
+                        buildings, or housing.
+                    </p>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 pr-0">
+                <div class="intro-img">
+                    <img src="static/assets/images/download8.jpg" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+        <div class="intro-thumb-row">
+            <a href="{% url 'blog:type1' %}" class="intro-thumb">
+              <div class="catg-icon">
+                  <i class="la la-home"></i>
+              </div>
+              <h6>Homes</h6>
+            </a>
+            <a href="{% url 'blog:type2' %}" class="intro-thumb">
+              <div class="catg-icon">
+                  <i class="la la-building"></i>
+              </div>
+              <h6>Apartments</h6>
+            </a>
+        </div>
+    </div>
+</section>
+
+{% if property_listings_r %}
+<section class="popular-listing section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="section-heading">
+                    <span>Discover</span>
+                    <h3>For Rent</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for property_listings in property_listings_r|slice:":3" %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card">
+                    <a href="{% url 'property:detail' property_listings.slug %}" title="">
+                        <div class="img-block">
+                            <div class="overlay"></div>
+                            <img src="{{ property_listings.image.url }}" alt="" class="img-fluid">
+                            <div class="rate-info">
+                                <h5>₹ {{ property_listings.price }}</h5>
+                                <span>per month</span>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <a href="{% url 'property:detail' property_listings.slug %}" title="">
+                            <h3>{{ property_listings.title }}</h3>
+                            <p> <i
+                                    class="la la-map-marker"></i>{{ property_listings.city }},{{ property_listings.state }}
+                            </p>
+                            <p><i class="la la-calendar-check-o"></i>{{ property_listings.date_updated }} <br>
+                                by {{ property_listings.owner }}</p>
+                        </a>
+                        <ul>
+                            <li>{{property_listings.bathrooms}} Bathrooms</li>
+                            <li>{{property_listings.bedrooms}} Bedrooms</li>
+                            <li>{{property_listings.sqft}} Sq Ft</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="pull-left">
+                            <i class="la la-heart-o"></i>
+                        </a>
+                        <a href="#" class="pull-right">
+                            <i class="la la-calendar-check-o"></i></a>
+                    </div>
+                    <a href="{% url 'property:detail' property_listings.slug %}" title="" class="ext-link"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div><br>
+        <a href="{% url 'blog:rent' %}" title="">
+            <div>Show more<i class="la la-long-arrow-right"></i></div>
+        </a>
+    </div>
+</section>
+{% endif %}
+
+{% if property_listings_s %}
+<section class="popular-listing section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="section-heading">
+                    <span>Discover</span>
+                    <h3>For Sale</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for property_listings in property_listings_s|slice:":3" %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card">
+                    <a href="{% url 'property:detail' property_listings.slug %}" title="">
+                        <div class="img-block">
+                            <div class="overlay"></div>
+                            <img src="{{ property_listings.image.url }}" alt="" class="img-fluid">
+                            <div class="rate-info">
+                                <h5>₹ {{ property_listings.price }}</h5>
+
+                            </div>
+                        </div>
+                    </a>
+                    <div class="card-body">
+                        <a href="{% url 'property:detail' property_listings.slug %}" title="">
+                            <h3>{{ property_listings.title }}</h3>
+                            <p> <i
+                                    class="la la-map-marker"></i>{{ property_listings.city }},{{ property_listings.state }}
+                            </p>
+                            <p><i class="la la-calendar-check-o"></i>{{ property_listings.date_updated }} <br>
+                                by {{ property_listings.owner }}</p>
+                        </a>
+                        <ul>
+                            <li>{{property_listings.bathrooms}} Bathrooms</li>
+                            <li>{{property_listings.bedrooms}} Beds</li>
+                            <li>{{property_listings.sqft}} Sq Ft</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="pull-left">
+                            <i class="la la-heart-o"></i>
+                        </a>
+                        <a href="#" class="pull-right">
+                            <i class="la la-calendar-check-o"></i></a>
+                    </div>
+                    <a href="{% url 'property:detail' property_listings.slug %}" title="" class="ext-link"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div><br>
+        <a href="{% url 'blog:sell' %}" title="">
+            <div>Show more<i class="la la-long-arrow-right"></i></div>
+        </a>
+    </div>
+</section>
+{% endif %}
+
+<div class="alert alert-success" role="alert">
+    <strong>Added to Favourites</strong> You can check your favourite items here <a href="#"
+        class="alert-link">Favourite Items</a>.
+    <a href="#" title="" class="close-alert"><i class="la la-close"></i></a>
+</div>
+
+{% if latitude %}
+<section class="fullwidth-home-map">
+    <h3 class="vis-hid">Visible Heading</h3>
+    <div id="map" data-map-zoom="9"></div>
+    <br>
+    <br>
+</section>
+{% endif %}
+
+{% if cities %}
+<section class="popular-cities section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="section-heading">
+                    <span>Popular Cities</span>
+                    <h3>Find Perfect Place</h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {% for cities in cities|slice:":3" %}
+            <div class="col-xl-4 col-md-6">
+                <a href="{% url 'blog:props' cities %}">
+                    <div class="card">
+                        <div class="overlay"></div>
+                        <img src="https://via.placeholder.com/370x370" alt="" class="img-fluid">
+                        <div class="card-body">
+                            <h4>{{ cities }}</h4>
+                            <!-- <p>5 Listings</p> -->
+                            <i class="fa fa-angle-right"></i>
+                        </div>
+                    </div><br>
+                </a>
+            </div>
+            {% endfor %}
+        </div><br>
+        <a href="{% url 'blog:city' cities %}" title="">
+            <div>Show more<i class="la la-long-arrow-right"></i></div>
+        </a>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block map %}
+<h1 style="font-size:25px;margin-left:94px">Our homes around the World</h1>
+<div id="map_div" style="width:90%;height:500px;margin: 90px;"></div>
+<script>
+// var points = [
+//   ['name1', 59.9362384705039, 30.19232525792222, 12, 'https://docs.jsfiddle.net/use-cases/code-snippets-hosting'],
+//   ['name2', 59.941412822085645, 30.263564729357767, 11, 'https://jsfiddle.net/about'],
+//   ['name3', 59.939177197629455, 30.273554411974955, 10, 'https://docs.jsfiddle.net/']
+// ];
+var lat= {{lat|safe}};
+var long = {{lon|safe}};
+var slug = {{slug|safe}}
+var link = "http://127.0.0.1:8000/property/"
+var name= ["name"];
+var ind = 12;
+// var url=['https://docs.jsfiddle.net/use-cases/code-snippets-hosting'];
+function setMarkers(map,lat,long,name,ind,slug) {
+  var shape = {
+    coord: [1, 1, 1, 20, 18, 20, 18 , 1],
+    type: 'poly'
+  };
+
+  for (var i = 0; i < lat.length; i++) {
+    var myLatLng = new google.maps.LatLng(lat[i], long[i]);
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      shape: shape,
+      title: name[i],
+      zIndex: ind,
+      url: link.concat(slug[i])
+    });
+    google.maps.event.addListener(marker, 'click', function() {
+      window.location.href = this.url;
+    });
+  }
+}
+
+function initFunc() {
+  var myOptions = {
+    center: new google.maps.LatLng(13.5269, 79.9802),
+    zoom: 9,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+  var map = new google.maps.Map(document.getElementById("map_div"),myOptions);
+  setMarkers(map,lat,long,name,ind,slug);
+}
+
+</script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYl3jkGGMzayse2hTeqApY0qanvqXdmaI&callback=initFunc">
+</script>
+{% endblock %}

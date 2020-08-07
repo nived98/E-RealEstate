@@ -1,0 +1,343 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<section class="property-single-pg">
+
+    <div class="container">
+        <div class="property-hd-sec">
+            <div class="card">
+                <div class="card-body">
+                    <a href="#">
+                        <h3>{{ property_listings.title }}</h3>
+                        {% if property_listings.owner == user %}
+                        <a href="{% url 'property:edit' property_listings.slug %}">Update</a>
+                        <a href="{% url 'payments:premium' property_listings.slug %}">Make it Premium</a>
+                        {% endif %}
+                        <a href="{% url 'property:price' property_listings.slug %}">Check price</a>
+                        <a href="{% url 'property:bank' property_listings.slug %}">Contact Bank</a>
+                        <p><i class="la la-map-marker"></i>{{ property_listings.city }},{{ property_listings.state }}
+                        </p>
+                    </a>
+                    <ul>
+                        <li>{{ property_listings.bathrooms }} Bathrooms</li>
+                        <li>{{ property_listings.bedrooms }} Beds</li>
+                        <li>Area {{ property_listings.sqft }} Sq Ft</li>
+                    </ul>
+                </div>
+                <!--card-body end-->
+                <div class="rate-info">
+                    <h5>Rs. {{ property_listings.price }}</h5>
+                    <span>{{ property_listings.types }}</span>
+                </div>
+                <!--rate-info end-->
+            </div>
+            <!--card end-->
+        </div>
+        <!---property-hd-sec end-->
+        <div class="property-single-page-content">
+            <div class="row">
+                <div class="col-lg-8 pl-0 pr-0">
+                    <div class="property-pg-left">
+                        <div class="property-imgs">
+
+                            <div class="property-main-img">
+                                <div class="property-img">
+                                    <img src="{{ property_listings.image.url }}" alt="">
+                                </div>
+                                <!--property-img end-->
+                            </div>
+                            <!--property-main-img end-->
+
+                            <div class="property-thumb-imgs">
+                                <div class="row thumb-carous">
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                        <div class="property-img">
+                                            <img src="{{ property_listings.image.url }}" alt="">
+                                        </div>
+                                        <!--property-img end-->
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                        <div class="property-img">
+                                            <img src="{{ property_listings.image2.url }}" alt="">
+                                        </div>
+                                        <!--property-img end-->
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-4 col-4">
+                                        <div class="property-img">
+                                            <img src="{{ property_listings.image3.url }}" alt="">
+                                        </div>
+                                        <!--property-img end-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!--property-thumb-imgs end-->
+
+                        </div>
+                        <!--property-imgs end-->
+
+                        <div class="descp-text">
+                            <h3>Description</h3>
+                            <p>{{ property_listings.body | safe }}</p>
+                        </div>
+                        <!--descp-text end-->
+
+                        <div class="details-info">
+                            <h3>Detail</h3>
+                            <ul>
+                                <li>
+                                    <h4>Construction Tyoe:</h4>
+                                    <span>Condo</span>
+                                </li>
+                                <li>
+                                    <h4>Year Built:</h4>
+                                    <span>{{ property_listings.year_built }}</span>
+                                </li>
+                                <li>
+                                    <h4>POOL: </h4>
+                                    <span>{{ property_listings.pool }}</span>
+                                </li>
+                                <li>
+                                    <h4>Bathrooms:</h4>
+                                    <span>{{ property_listings.bathrooms }}</span>
+                                </li>
+                                <li>
+                                    <h4>Bedrooms:</h4>
+                                    <span>{{ property_listings.bedrooms }}</span>
+                                </li>
+                                <li>
+                                    <h4>Flooring:</h4>
+                                    <span>{{ property_listings.sqft }} Sq Ft</span>
+                                </li>
+                                <li>
+                                    <h4>GYM:</h4>
+                                    <span> {{ property_listings.gym }} </span>
+                                </li>
+                                <li>
+                                    <h4>Parking:</h4>
+                                    <span>{{ property_listings.parking }}</span>
+                                </li>
+                                <li>
+                                    <h4>Balcony</h4>
+                                    <span>{{ property_listings.balcony }}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--details-info end-->
+
+                        <div class="features-dv">
+                            <h3>Features</h3>
+                            <form class="form_field">
+                                <ul>
+                                    <li class="input-field">
+                                        <input type="checkbox" name="cc" id="c1">
+                                        <label for="c1">
+                                            <span></span>
+                                            <small>Parking</small>
+                                        </label>
+                                    </li>
+                                    <li class="input-field">
+                                        <input type="checkbox" name="cc" id="c2" checked>
+                                        <label for="c2">
+                                            <span></span>
+                                            <small>Gym</small>
+                                        </label>
+                                    </li>
+                                    <li class="input-field">
+                                        <input type="checkbox" name="cc" id="c3">
+                                        <label for="c3">
+                                            <span></span>
+                                            <small>Heating</small>
+                                        </label>
+                                    </li>
+                                    <li class="input-field">
+                                        <input type="checkbox" name="cc" id="c4" checked>
+                                        <label for="c4">
+                                            <span></span>
+                                            <small>Air Conditioner</small>
+                                        </label>
+                                    </li>
+                                    <li class="input-field">
+                                        <input type="checkbox" name="cc" id="c5" checked>
+                                        <label for="c5">
+                                            <span></span>
+                                            <small>Wireless Internet</small>
+                                        </label>
+                                    </li>
+                                    <li class="input-field">
+                                        <input type="checkbox" name="cc" id="c6">
+                                        <label for="c6">
+                                            <span></span>
+                                            <small>Swimming Pool</small>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                        <!--features-dv end-->
+
+                        <div class="floorplan">
+                            <h3>floorplan</h3>
+                            <img src="{{ property_listings.image4.url }}" alt="">
+                        </div>
+                        <!--floorplan end-->
+
+                    </div>
+                    <!--property-pg-left end-->
+
+                </div>
+
+                <div class="col-lg-4 pr-0">
+                    <div class="sidebar layout2">
+                        <div class="widget widget-form">
+                            <h3 class="widget-title">Contact Listing Agent</h3>
+                            <div class="contct-info">
+
+                                <div class="contct-nf">
+                                    <h3>{{ property_listings.owner }}</h3>
+                                    <h4>Property Owner</h4>
+                                    <span><i class="la la-phone"></i>{{property_listings.owner.user_phone}}</span>
+                                </div>
+                            </div>
+                            <!--contct-info end-->
+
+                        </div>
+                        <!--widget-form end-->
+                        <!-- <div class="widget widget-catgs">
+                            <h3 class="widget-title">Categories</h3>
+                            <ul>
+                                <li>
+                                    <a href="#" title=""><i class="la la-angle-right"></i><span>House</span></a>
+                                    <span>7</span>
+                                </li>
+                                <li>
+                                    <a href="#" title=""><i class="la la-angle-right"></i><span>Condo</span></a>
+                                    <span>15</span>
+                                </li>
+                                <li>
+                                    <a href="#" title=""><i class="la la-angle-right"></i><span>Townhouse</span></a>
+                                    <span>4</span>
+                                </li>
+                                <li>
+                                    <a href="#" title=""><i class="la la-angle-right"></i><span>Coop</span></a>
+                                    <span>1</span>
+                                </li>
+                            </ul>
+                        </div> -->
+                        <!--widget-catgs end-->
+
+
+                        <div class="widget widget-posts">
+                            <h3 class="widget-title">Popular Listings</h3>
+                            <ul>
+                                {% for lists in lists %}
+                                <li>
+                                    <div class="wd-posts">
+                                        <div class="ps-img">
+                                            <a href="#" title="">
+                                                <img src="#" alt="">
+                                            </a>
+                                        </div>
+                                        <!--ps-img end-->
+                                        <div class="ps-info">
+                                            <h3><a href="{% url 'property:detail' lists.slug %}"
+                                                    title="">{{lists.title}}</a></h3>
+                                            <strong>{{ lists.price }}</strong>
+                                            <span><i class="la la-map-marker"></i>{{lists.address}}</span>
+                                        </div>
+                                        <!--ps-info end-->
+                                    </div>
+                                    <!--wd-posts end-->
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <!--widget-posts end-->
+
+                        <div class="widget widget-calculator">
+                            <h3 class="widget-title">Mortgage Calculator</h3>
+                            <!-- <form id="myform"> -->
+                            <ul>
+                                <li>
+                                    <i>₹</i>
+                                    <input type="number" name="amount" placeholder="Total Amount" id="total_amt">
+                                </li>
+                                <li>
+                                    <i>₹</i>
+                                    <input type="number" name="amount" placeholder="Down Payment" id="down_pymnt">
+                                </li>
+                                <li>
+                                    <i>₹</i>
+                                    <input type="number" name="amount" placeholder="Interest Rate" id="interest_rate">
+                                </li>
+                                <li>
+                                    <i>₹</i>
+                                    <input type="number" name="amount" placeholder="Monthly Repayments"
+                                        id="montly_paymnt">
+                                </li>
+                                <li>
+                                    <button id="button__" type="submit" onclick="calculate()"
+                                        class="btn2">Calculate</button>
+                                </li>
+                            </ul>
+                            <!-- </form> -->
+                        </div>
+                        <!--widget-calculator end-->
+                    </div>
+                    <!--sidebar end-->
+                </div>
+            </div>
+        </div>
+        <!--property-single-page-content end-->
+    </div>
+
+</section>
+<div>
+    <script>
+
+        var total_amt = document.getElementById("total_amt");
+        var down_pymnt = document.getElementById("down_pymnt");
+        var interest_rate = document.getElementById("interest_rate");
+        var montly_paymnt = document.getElementById("montly_paymnt");
+        // console.log(total_amt)
+        // console.log("fasdfja")
+
+        function calculate() {
+            var ans;
+            ans = (total_amt.value - down_pymnt.value) / interest_rate.value
+            montly_paymnt.value = ans
+        }
+    </script>
+</div>
+{% endblock %}
+{% block map %}
+<div class="container">
+    <h1 style="font-size:20px; margin-left:35px">Location</h1>
+    <div id='googlemap' style="width: 60%;height:400px;margin:10px;margin-bottom: 40px;"></div>
+    <script>
+        lat = {{ property_listings.latitude }};
+        long = {{ property_listings.longitude }}
+        function initMap() {
+
+            var mapOptions = {
+                center: new google.maps.LatLng(lat, long),
+                zoom: 7
+            }
+
+            var map = new google.maps.Map(document.getElementById("googlemap"), mapOptions);
+
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(lat, long),
+                map: map,
+            });
+        }
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYl3jkGGMzayse2hTeqApY0qanvqXdmaI&callback=initMap">
+        </script>
+    {% if property_listings.owner != user %}
+    <a href="{% url 'payments:buy' property_listings.slug %}" class="btn btn-default">Buy
+        Now</button>
+        {% endif %}
+</div>
+{% endblock %}

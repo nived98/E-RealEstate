@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h2>Sign up</h2>
+<div class="popup-form">
+
+  <form method="post">
+    {% csrf_token %}
+
+
+    <!-- <div class="form-original">
+    {% for field in form %}
+    <p>
+      {{ field.label_tag }}<br>
+      {{ field }}
+      {% if field.help_text %}
+      <small style="display: none">{{ field.help_text }}</small>
+      {% endif %}
+      {% for error in field.errors %}
+      <p style="color: red">{{ error }}</p>
+      {% endfor %}
+    </p>
+    {% endfor %}
+  </div> -->
+
+    <div class="form-copied-from-chrome" >
+
+      <label for="id_username">Username:</label><br>
+      <div class="form-field">
+        <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
+      </div>
+      <small style="display: none">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small>
+
+
+
+      <label for="id_email">Email:</label><br>
+      <div class="form-field">
+
+        <input type="email" name="email" maxlength="200" required="" id="id_email">
+      </div>
+      <small style="display: none">Required</small>
+
+
+
+      <label for="id_password1">Password:</label><br>
+      <div class="form-field">
+
+        <input type="password" name="password1" required="" id="id_password1">
+      </div>
+      <small style="display: none"></small></p>
+      <ul>
+        <li><small style="display: none">Your password can't be too similar to your other personal information.</small>
+        </li>
+        <li><small style="display: none">Your password must contain at least 8 characters.</small></li>
+        <li><small style="display: none">Your password can't be a commonly used password.</small></li>
+        <li><small style="display: none">Your password can't be entirely numeric.</small></li>
+      </ul>
+
+
+
+      <label for="id_password2">Password confirmation:</label><br>
+      <div class="form-field">
+        <input type="password" name="password2" required="" id="id_password2">
+      </div>
+      <small style="display: none">Enter the same password as before, for verification.</small>
+
+
+
+    </div>
+
+    <button type="submit">Sign up</button>
+  </form>
+</div>
+{% endblock %}
+
+<div class="popup" id="register-popup">
+  <h3>Register</h3>
+  <div class="popup-form">
+    <form>
+      <div class="form-field">
+        <input type="text" name="username" placeholder="Username">
+      </div>
+      <div class="form-field">
+        <input type="text" name="email" placeholder="Email">
+      </div>
+      <div class="form-field">
+        <input type="text" name="password" placeholder="Password">
+      </div>
+      <div class="form-cp">
+        <div class="form-field">
+          <div class="input-field">
+            <input type="checkbox" name="ccc" id="cc2">
+            <label for="cc2">
+              <span></span>
+              <small>I agree with terms</small>
+            </label>
+          </div>
+        </div>
+        <a href="#" title="" class="signin-op">Have an account?</a>
+      </div>
+      <!--form-cp end-->
+      <button type="submit" class="btn2">Register</button>
+    </form>
+  </div>
+</div>
+<!--popup end-->
